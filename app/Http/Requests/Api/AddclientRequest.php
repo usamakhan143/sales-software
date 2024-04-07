@@ -24,7 +24,19 @@ class AddclientRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'clientName' => 'required|string',
+            'email' => 'required|email|unique:clients,email',
+            'phone' => 'nullable|string',
+            'password' => 'nullable|string',
+            'address' => 'nullable|string',
+            'city' => 'nullable|string',
+            'state' => 'nullable|string',
+            'zipCode' => 'nullable|string',
+            'country' => 'nullable|string',
+            'badge' => 'nullable|string',
+            'status' => 'boolean',
+            'createdBy' => 'required|string',
+            'notes' => 'nullable|string',
         ];
     }
 
