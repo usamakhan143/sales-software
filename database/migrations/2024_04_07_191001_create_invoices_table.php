@@ -31,9 +31,11 @@ class CreateInvoicesTable extends Migration
             $table->string('totalAmountDue')->nullable();
             $table->boolean('isEmailed')->default(false);
             $table->string('notes');
+            $table->string('payLink')->nullable();
             $table->string('paymentStatus'); // Draft, Sent, Paid, Partially Paid, Overdue, Disputed, Void, Closed 
             $table->bigInteger('userId');
             $table->bigInteger('client_id');
+            $table->bigInteger('brand_id');
             $table->boolean('status');
             $table->timestamps();
         });
