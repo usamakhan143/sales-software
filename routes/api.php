@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Apis\BrandController;
 use App\Http\Controllers\Apis\ClientController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -19,5 +20,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
+// Add Client
 Route::post('add-client', [ClientController::class, 'addClient']);
+Route::post('add-brand', [BrandController::class, 'createBrand']);
