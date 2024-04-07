@@ -3,9 +3,11 @@
 namespace App\Http\Requests\Api;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Traits\ApiResponseTrait;
 
 class AddclientRequest extends FormRequest
 {
+    use ApiResponseTrait;
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -38,16 +40,5 @@ class AddclientRequest extends FormRequest
             'createdBy' => 'required|string',
             'notes' => 'nullable|string',
         ];
-    }
-
-    protected function failedValidation(\Illuminate\Contracts\Validation\Validator $validator)
-    {
-        $response = response()->json([
-            'status' => 422,
-            'message' => 'Validation failed',
-            'errors' => $validator->errors(),
-        ], 422);
-
-        throw new \Illuminate\Validation\ValidationException($validator, $response);
     }
 }

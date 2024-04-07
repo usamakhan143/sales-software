@@ -4,8 +4,12 @@ namespace App\Http\Requests\Api;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+use App\Traits\ApiResponseTrait;
+
 class AddbrandRequest extends FormRequest
 {
+    use ApiResponseTrait;
+
     /**
      * Determine if the user is authorized to make this request.
      *
