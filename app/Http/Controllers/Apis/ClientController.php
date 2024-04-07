@@ -28,7 +28,7 @@ class ClientController extends Controller
         $client->status = $request->status ?? 1;
         $client->createdBy = $request->createdBy ?? 'User';
         $client->notes = $request->notes ?? 'NA';
-
+        $client->createdBy = $request->createdBy ?? 0;
         // Save the client to the database
         $addClient = $client->save();
 

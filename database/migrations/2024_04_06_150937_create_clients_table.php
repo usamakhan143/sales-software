@@ -26,7 +26,7 @@ class CreateClientsTable extends Migration
             $table->string('country')->nullable();
             $table->string('badge')->nullable();
             $table->boolean('status')->default(true);
-            $table->string('createdBy');
+            $table->bigInteger('userId');
             $table->text('notes')->nullable();
             $table->timestamps();
         });

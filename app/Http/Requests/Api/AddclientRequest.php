@@ -37,7 +37,7 @@ class AddclientRequest extends FormRequest
             'country' => 'nullable|string',
             'badge' => 'nullable|string',
             'status' => 'boolean',
-            'createdBy' => 'required|string',
+            'createdBy' => 'required|numeric',
             'notes' => 'nullable|string',
         ];
     }
