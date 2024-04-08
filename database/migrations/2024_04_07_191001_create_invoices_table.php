@@ -15,13 +15,14 @@ class CreateInvoicesTable extends Migration
     {
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('invoiceNumber');
+            $table->string('invoiceNumber');
             $table->string('combineDate');
             $table->bigInteger('day');
             $table->bigInteger('month');
             $table->bigInteger('year');
             $table->string('dueDate');
             $table->boolean('isDiscount')->default(false);
+            $table->bigInteger('discount_id')->nullable();
             $table->string('shippingCharges')->nullable();
             $table->boolean('isRecurring')->default(false);
             $table->string('recurringType')->nullable(); // Monthly, Weekly, Daily, Hourly

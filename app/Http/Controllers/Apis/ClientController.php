@@ -26,7 +26,6 @@ class ClientController extends Controller
         $client->country = $request->country ?? 'NA';
         $client->badge = $request->badge ?? 'NA';
         $client->status = $request->status ?? 1;
-        $client->createdBy = $request->createdBy ?? 'User';
         $client->notes = $request->notes ?? 'NA';
         $client->createdBy = $request->createdBy ?? 0;
         // Save the client to the database

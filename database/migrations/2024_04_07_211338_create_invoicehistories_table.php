@@ -1,31 +1,31 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
+// use Illuminate\Database\Migrations\Migration;
+// use Illuminate\Database\Schema\Blueprint;
+// use Illuminate\Support\Facades\Schema;
 
-class CreateInvoicehistoriesTable extends Migration
-{
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        Schema::create('invoicehistories', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-        });
-    }
+// class CreateInvoicehistoriesTable extends Migration
+// {
+//     /**
+//      * Run the migrations.
+//      *
+//      * @return void
+//      */
+//     public function up()
+//     {
+//         Schema::create('invoicehistories', function (Blueprint $table) {
+//             $table->id();
+//             $table->timestamps();
+//         });
+//     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('invoicehistories');
-    }
-}
+//     /**
+//      * Reverse the migrations.
+//      *
+//      * @return void
+//      */
+//     public function down()
+//     {
+//         Schema::dropIfExists('invoicehistories');
+//     }
+// }

@@ -34,7 +34,6 @@ class AddinvoiceRequest extends FormRequest
             'state' => 'nullable|string',
             'zipCode' => 'nullable|string',
             'country' => 'nullable|string',
-            'createdBy' => 'required|string',
             'combineDate' => 'required|date|after_or_equal:today',
             'dueDate' => 'required|date|after_or_equal:combineDate',
             'isDiscount' => 'required|boolean',
