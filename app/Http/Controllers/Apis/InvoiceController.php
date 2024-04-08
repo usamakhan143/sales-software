@@ -77,8 +77,17 @@ class InvoiceController extends Controller
             if ($request->currentAmount != null) {
                 if ($request->currentAmount <= $totalPrice) {
                     $dueAmount = $totalAmount - $request->currentAmount;
+                } else {
+                    $dueAmount = $totalAmount - $request->currentAmount;
+                    Client::find($client->id)->delete();
+                    return response()->json([
+                        'status' => 404,
+                        'dueAmount' => $dueAmount,
+                        'message' => "Due amount should not be less than 0."
+                    ], 404);
                 }
             } else {
+                Client::find($client->id)->delete();
                 return response()->json([
                     'status' => 404,
                     'totalAmount' => $totalPrice,
@@ -94,6 +103,11 @@ class InvoiceController extends Controller
 
             // Check if the invoice is saved successfully
             if ($saveInvoice) {
+
+                foreach ($request->services as $serviceData) {
+                    $service = new Offerservice($serviceData);
+                    $invoice->offerServices()->save($service);
+                }
                 // Optionally, return a success response
                 return response()->json([
                     'status' => 201,
@@ -107,12 +121,6 @@ class InvoiceController extends Controller
                     'message' => 'Failed to create invoice'
                 ], 500);
             }
-
-            // foreach ($request->services as $serviceData) {
-            //     $service = new Offerservice($serviceData);
-            //     $service->name = $request->
-            //     $service->save();
-            // }
 
             // Return a success response
             // return response()->json([
