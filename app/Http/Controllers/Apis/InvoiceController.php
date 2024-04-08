@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Apis;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\AddinvoiceRequest;
+use App\Http\Resources\InvoiceResource;
 use App\Models\Apis\Client;
 use App\Models\Apis\Invoice;
 use App\Models\Apis\Offerservice;
@@ -112,7 +113,7 @@ class InvoiceController extends Controller
                 return response()->json([
                     'status' => 201,
                     'message' => 'Invoice added successfully',
-                    'invoice' => $invoice
+                    'invoice' => new InvoiceResource($invoice)
                 ], 201);
             } else {
                 // Optionally, return an error response if the invoice failed to save
