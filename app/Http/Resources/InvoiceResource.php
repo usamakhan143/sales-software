@@ -36,7 +36,7 @@ class InvoiceResource extends JsonResource
             'payLink' => $this->payLink,
             'paymentStatus' => $this->paymentStatus,
             'userId' => $this->userId,
-            'client' => $this->clientDetails,
+            'client' => new ClientResource($this->clientDetails),
             'offerservices' => $this->offerServices,
             'brand' => new AddbrandResource($this->brand),
             'status' => $this->status,
