@@ -37,12 +37,9 @@ class InvoiceResource extends JsonResource
             'paymentStatus' => $this->paymentStatus,
             'userId' => $this->userId,
             'client' => new ClientResource($this->clientDetails),
-            'offerservices' => $this->offerServices,
+            'offerservices' => OfferserviceResource::collection($this->offerServices),
             'brand' => new AddbrandResource($this->brand),
-            'status' => $this->status,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
-
+            'status' => $this->status
         ];
     }
 }
