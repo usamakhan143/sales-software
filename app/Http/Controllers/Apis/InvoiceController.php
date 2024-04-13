@@ -14,27 +14,35 @@ class InvoiceController extends Controller
 {
     public function createInvoice(AddinvoiceRequest $request)
     {
-        // Create a new instance of the Client model
-        $client = new Client();
+        // Check If this invoice is belongs to an existing client.
 
-        // Assign values from the request to the client object
-        $client->name = $request->clientName;
-        $client->email = $request->email;
-        $client->phone = $request->phone ?? 'NA';
-        $client->password = Hash::make($request->password) ?? 'NA';
-        $client->address = $request->address ?? 'NA';
-        $client->city = $request->city ?? 'NA';
-        $client->state = $request->state ?? 'NA';
-        $client->zipCode = $request->zipCode ?? 'NA';
-        $client->country = $request->country ?? 'NA';
-        $client->badge = $request->badge ?? 'NA';
-        $client->status = $request->status ?? 1;
-        $client->notes = $request->notes ?? 'NA';
-        $client->createdBy = $request->userId ?? 0;
-        // Save the client to the database
-        $addClient = $client->save();
+        if ($request->isClientExist === true) {
+            $client = Client::find($request->clientId);
+        } else {
+            // Create a new instance of the Client model
+            $client = new Client();
 
-        if ($addClient) {
+            // Assign values from the request to the client object
+            $client->name = $request->clientName;
+            $client->email = $request->email;
+            $client->phone = $request->phone ?? 'NA';
+            $client->password = Hash::make($request->password) ?? 'NA';
+            $client->address = $request->address ?? 'NA';
+            $client->city = $request->city ?? 'NA';
+            $client->state = $request->state ?? 'NA';
+            $client->zipCode = $request->zipCode ?? 'NA';
+            $client->country = $request->country ?? 'NA';
+            $client->badge = $request->badge ?? 'NA';
+            $client->status = $request->status ?? 1;
+            $client->notes = $request->notes ?? 'NA';
+            $client->createdBy = $request->userId ?? 0;
+            // Save the client to the database
+            $client->save();
+        }
+
+        $clientSavedOrExists = Client::where('id', $client->id)->exists();
+
+        if ($clientSavedOrExists) {
 
             // Create a new invoice instance
             $invoice = new Invoice();

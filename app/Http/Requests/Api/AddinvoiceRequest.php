@@ -26,8 +26,10 @@ class AddinvoiceRequest extends FormRequest
     public function rules()
     {
         return [
-            'clientName' => 'required|string',
-            'email' => 'required|email|unique:clients,email',
+            'isClientExist' => 'required|boolean',
+            'clientId' => $this->input('isClientExist') ? 'required|numeric' : '',
+            'clientName' => $this->input('isClientExist') ? '' : 'required|string',
+            'email' => $this->input('isClientExist') ? '' : 'required|email|unique:clients,email',
             'phone' => 'nullable|string',
             'address' => 'nullable|string',
             'city' => 'nullable|string',
