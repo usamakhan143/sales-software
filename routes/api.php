@@ -3,6 +3,7 @@
 use App\Http\Controllers\Apis\BrandController;
 use App\Http\Controllers\Apis\ClientController;
 use App\Http\Controllers\Apis\InvoiceController;
+use App\Http\Controllers\Apis\PdfController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,3 +26,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('add-client', [ClientController::class, 'addClient']);
 Route::post('add-brand', [BrandController::class, 'createBrand']);
 Route::post('add-invoice', [InvoiceController::class, 'createInvoice']);
+Route::get('generate-pdf/{id}', [PdfController::class, 'generatePDF']);
