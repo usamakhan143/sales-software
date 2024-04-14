@@ -18,4 +18,9 @@ class Brand extends Model
     {
         return $this->hasOne(File::class, 'brand_id')->where('file_type', 'small-logo');
     }
+
+    public function invoices()
+    {
+        return $this->hasMany(Invoice::class, 'brand_id');
+    }
 }

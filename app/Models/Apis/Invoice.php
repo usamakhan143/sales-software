@@ -18,4 +18,9 @@ class Invoice extends Model
     {
         return $this->belongsTo(Client::class, 'client_id');
     }
+
+    public function brand()
+    {
+        return $this->belongsTo(Brand::class, 'brand_id');
+    }
 }
