@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Invoice</title>
+    <title>Invoice #{{ $data->invoiceNumber }}</title>
     <style>
         /* Basic styling */
         body {
@@ -172,10 +172,27 @@
             <div class="company-info">
                 <!-- Logo and tagline in one box -->
                 <div class="company-info-box">
-                    <img src="#" alt="IT Veins Logo">
+                    @if (request()->getHttpHost() == '127.0.0.1:8000')
+
+                        {{-- @if (file_exists(public_path($data->brand->mainLogo->file_url)))
+                            <!-- If the image exists, display it -->
+                            <img src='{{ asset($data->brand->mainLogo->file_url) }}' alt="{{ $data->brand->name }}" />
+                        @else --}}
+                        {{ $data->brand->name }}
+                        {{-- @endif --}}
+                    @else
+                        @if (file_exists(storage_path($data->brand->mainLogo->file_url)))
+                            <!-- If the image exists, display it -->
+                            <img src='{{ asset('storage/' . $data->brand->mainLogo->file_url) }}'
+                                alt="{{ $data->brand->name }}" />
+                        @else
+                            {{ $data->brand->name }}
+                        @endif
+
+                    @endif
                 </div>
                 <div class="company-info-box">
-                    <p class="tagline">Pulsed the best solutions.</p>
+                    <p class="tagline">{{ $data->brand->tagLine }}</p>
                 </div>
             </div>
 
@@ -183,8 +200,8 @@
             <div style="clear: both;"></div>
 
             <!-- Invoice title -->
-            <h1>Invoice #0026</h1>
-            <p>Due Date: 2024-04-15</p> <!-- Add the due date -->
+            <h1>Invoice #{{ $data->invoiceNumber }}</h1>
+            <p>Due Date: {{ $data->dueDate }}</p> <!-- Add the due date -->
         </div>
 
         <!-- Info section -->
@@ -192,20 +209,20 @@
             <!-- Sender info -->
             <div class="info-box">
                 <h3>From:</h3>
-                <p>IT Veins Solutions<br>
-                    Email: contact@itveins.com<br>
-                    Phone: +1 225 111 232</p>
+                <p>{{ $data->brand->fullName }}<br>
+                    Email: {{ $data->brand->email }}<br>
+                    Phone: {{ $data->brand->phone }}</p>
             </div>
 
             <!-- Recipient info -->
             <div class="info-box">
                 <h3>To:</h3>
-                <p>John Doe<br>
-                    Email: john.doe1@example.com<br>
-                    Phone: NA<br>
-                    Address: NA<br>
-                    City, State, Zip Code: NA, NA, NA<br>
-                    Country: NA</p>
+                <p>{{ $data->clientDetails->name }}<br>
+                    Email: {{ $data->clientDetails->email }}<br>
+                    {{ $data->clientDetails->phone !== 'NA' ? 'Phone: ' . $data->clientDetails->phone . '<br>' : '' }}
+                    {{ $data->clientDetails->address !== 'NA' ? 'Address: ' . $data->clientDetails->address . '<br>' : '' }}
+                    {{ $data->clientDetails->city !== 'NA' && $data->clientDetails->state !== 'NA' && $data->clientDetails->zipCode !== 'NA' ? 'City, State, Zip Code: ' . $data->clientDetails->city . ', ' . $data->clientDetails->state . ', ' . $data->clientDetails->zipCode . '<br>' : '' }}
+                    {{ $data->clientDetails->country !== 'NA' ? 'Country: ' . $data->clientDetails->country : '' }}</p>
             </div>
         </div>
 
@@ -221,24 +238,15 @@
             </thead>
             <tbody>
                 <!-- Loop through the offerservices array -->
-                <tr>
-                    <td>Description of Service 1</td>
-                    <td>1</td>
-                    <td>$350.00</td>
-                    <td>$350.00</td>
-                </tr>
-                <tr>
-                    <td>Description of Service 2</td>
-                    <td>2</td>
-                    <td>$50.00</td>
-                    <td>$100.00</td>
-                </tr>
-                <tr>
-                    <td>Description of Service 3</td>
-                    <td>1</td>
-                    <td>$200.00</td>
-                    <td>$200.00</td>
-                </tr>
+                @foreach ($data->offerServices as $offerService)
+                    <tr>
+                        <td>{{ $offerService->description }}</td>
+                        <td>{{ $offerService->qty }}</td>
+                        <td>${{ $offerService->price }}</td>
+                        <td>${{ $offerService->price * $offerService->qty }}</td>
+                    </tr>
+                @endforeach
+
             </tbody>
         </table>
 
@@ -247,27 +255,51 @@
             <table style="width: auto; margin-left: auto; margin-right: 0;">
                 <tr>
                     <td style="text-align: left; font-weight: bold; padding-right: 10px;">Subtotal:</td>
-                    <td style="text-align: right;">$650.00</td>
+                    <td style="text-align: right;">${{ $data->subTotal }}</td>
                 </tr>
+                @if ($data->shippingCharges > 0)
+                    <tr>
+                        <td style="text-align: left; font-weight: bold; padding-right: 10px;">Shipping Charges:</td>
+                        <td style="text-align: right;">${{ $data->shippingCharges }}</td>
+                    </tr>
+                @endif
+                @if ($data->isDiscount !== 0)
+                    <tr>
+                        <td style="text-align: left; font-weight: bold; padding-right: 10px;">Discount:</td>
+                        <td style="text-align: right;">-$0.00</td>
+                    </tr>
+                @endif
                 <tr>
-                    <td style="text-align: left; font-weight: bold; padding-right: 10px;">Shipping Charges:</td>
-                    <td style="text-align: right;">$9.99</td>
+                    <td style="text-align: left; font-weight: bold; padding-right: 10px;">Total Amount:</td>
+                    @if ($data->totalAmountDue > 0)
+                        <td style="text-align: right;">
+                            ${{ $data->isRecurring !== 0 ? $data->totalAmount . ' / ' . $data->recurringType : $data->totalAmount }}
+                        </td>
+                    @elseif ($data->totalAmountDue < 1)
+                        <td style="text-align: right; font-size:22px; font-weight: bold; color:teal;">
+                            ${{ $data->isRecurring !== 0 ? $data->totalAmount . ' / ' . $data->recurringType : $data->totalAmount }}
+                        </td>
+                    @endif
                 </tr>
-                <tr>
-                    <td style="text-align: left; font-weight: bold; padding-right: 10px;">Discount:</td>
-                    <td style="text-align: right;">$0.00</td>
-                </tr>
-                <tr>
-                    <td style="text-align: left; font-weight: bold; padding-right: 10px;">Total:</td>
-                    <td style="text-align: right;">$659.99 / month</td>
-                </tr>
-                <tr>
-                    <td style="text-align: left; font-weight: bold; padding-right: 10px;">Total Amount Due:</td>
-                    <td style="text-align: right;">$459.99</td>
-                </tr>
+                @if ($data->totalAmountDue > 0)
+                    <tr>
+                        <td style="text-align: left; font-weight: bold; padding-right: 10px;">Partial
+                            Payment:</td>
+                        <td style="text-align: right; font-size:22px; font-weight: bold; color:teal;">
+                            ${{ $data->currentAmount }}
+                            / =
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left; font-weight: bold; padding-right: 10px;">Remaining Balance:</td>
+                        <td style="text-align: right;">${{ $data->totalAmountDue }}</td>
+                    </tr>
+                @endif
             </table>
             <p>Thank you for your business!</p>
-            <p><a href="https://payment-link.com">Click here to pay</a></p>
+            @if ($data->payLink !== 'NA')
+                <p><a href="https://payment-link.com">Click here to pay</a></p>
+            @endif
         </div>
 
     </div>
