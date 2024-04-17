@@ -25,13 +25,14 @@ class PdfController extends Controller
             'folder_name' => 'invoices',
             'file_name' => $data->invoiceNumber,
             'file_type' => 'invoice-pdf',
-            'file_ext' => 'pdf'
+            'file_ext' => 'pdf',
+            'invoice_id' => $data->id
         ];
 
         $pdfPath = Fileupload::pdfUpload($pdf, $pdfData['folder_name'], $pdfData['file_name']);
 
         // Storing the PDF path inside the db.
-        $saveInDb = Fileupload::addFile($pdfPath, $pdfData['file_type'], $pdfData['file_ext'], 0, $data->brand_id);
+        $saveInDb = Fileupload::addFile($pdfPath, $pdfData['file_type'], $pdfData['file_ext'], 0, $data->brand_id, $pdfData['invoice_id']);
 
         // Setup the PDF path based on the enviroment.
         if (app()->isLocal()) {

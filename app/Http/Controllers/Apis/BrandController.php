@@ -51,8 +51,8 @@ class BrandController extends Controller
             $originalLogo = Fileupload::singleUploadFile($originalLogoRequest, $originalLogoImage_data['brandId'], $originalLogoImage_data['folderName'], $originalLogoImage_data['imageName']);
             $smallLogo = Fileupload::singleUploadFile($smallLogoRequest, $smallLogoImage_data['brandId'], $smallLogoImage_data['folderName'], $smallLogoImage_data['imageName']);
             // Save logos to db.
-            $save_logo = Fileupload::addFile($originalLogo, $originalLogoImage_data['file_type'], $originalLogoImage_data['file_ext_type'], $originalLogoImage_data['userId'], $originalLogoImage_data['brandId']);
-            $save_small_logo = Fileupload::addFile($smallLogo, $smallLogoImage_data['file_type'], $smallLogoImage_data['file_ext_type'], $smallLogoImage_data['userId'], $smallLogoImage_data['brandId']);
+            $save_logo = Fileupload::addFile($originalLogo, $originalLogoImage_data['file_type'], $originalLogoImage_data['file_ext_type'], $originalLogoImage_data['userId'], $originalLogoImage_data['brandId'], 0);
+            $save_small_logo = Fileupload::addFile($smallLogo, $smallLogoImage_data['file_type'], $smallLogoImage_data['file_ext_type'], $smallLogoImage_data['userId'], $smallLogoImage_data['brandId'], 0);
             if ($save_logo['isSave'] && $save_small_logo['isSave']) {
                 // Return a success response
                 return response()->json([

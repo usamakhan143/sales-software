@@ -23,4 +23,9 @@ class Invoice extends Model
     {
         return $this->belongsTo(Brand::class, 'brand_id');
     }
+
+    public function getPdfInvoice()
+    {
+        return $this->hasOne(File::class, 'invoice_id')->where('file_type', 'invoice-pdf');
+    }
 }

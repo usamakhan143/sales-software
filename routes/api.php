@@ -36,4 +36,4 @@ Route::post('add-invoice', [InvoiceController::class, 'createInvoice']);
 Route::get('generate-pdf/{id}', [PdfController::class, 'generatePDF']);
 
 // Email Controller
-Route::get('send-invoice', [EmailController::class, 'sendInvoiceToCustomer']);
+Route::post('send-invoice', [EmailController::class, 'sendInvoiceToCustomer']);

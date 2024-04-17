@@ -20,6 +20,7 @@ class CreateFilesTable extends Migration
             $table->string('file_type');
             $table->string('file_ext_type');
             $table->integer('brand_id');
+            $table->integer('invoice_id');
             $table->integer('user_id');
             $table->timestamps();
         });
