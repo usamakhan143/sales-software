@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Apis;
 use App\Helpers\Fileupload;
 use App\Http\Controllers\Controller;
 use App\Models\Apis\Invoice;
-use Illuminate\Http\Request;
 use PDF;
 
 class PdfController extends Controller
