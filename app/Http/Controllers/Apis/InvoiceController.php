@@ -84,14 +84,23 @@ class InvoiceController extends Controller
             $totalAmount = $totalPrice + $request->input('shippingCharges');
             // Calculate Due Amount
             if ($request->currentAmount != null) {
-                if ($request->currentAmount <= $totalPrice) {
+                if ($request->currentAmount <= $totalAmount) {
                     $dueAmount = $totalAmount - $request->currentAmount;
-                } else {
+                } else if ($clientSavedOrExists === false) {
                     $dueAmount = $totalAmount - $request->currentAmount;
                     Client::find($client->id)->delete();
                     return response()->json([
                         'status' => 404,
                         'dueAmount' => $dueAmount,
+                        'existingClient' => $clientSavedOrExists,
+                        'message' => "Due amount should not be less than 0."
+                    ], 404);
+                } else {
+                    $dueAmount = $totalAmount - $request->currentAmount;
+                    return response()->json([
+                        'status' => 404,
+                        'dueAmount' => $dueAmount,
+                        'existingClient' => $clientSavedOrExists,
                         'message' => "Due amount should not be less than 0."
                     ], 404);
                 }

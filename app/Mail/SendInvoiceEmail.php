@@ -34,7 +34,7 @@ class SendInvoiceEmail extends Mailable
      */
     public function build()
     {
-        return $this->subject($this->subject)->view('emails.invoice')->attach($this->pdfPath, [
+        return $this->subject($this->subject)->view('emails.invoice', [$this->data])->attach($this->pdfPath, [
             'mime' => 'application/pdf',
         ]);
     }

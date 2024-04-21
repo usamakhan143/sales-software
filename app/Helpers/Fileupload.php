@@ -56,7 +56,7 @@ class Fileupload
     }
 
 
-    public static function addFile($imageFile, $file_type, $file_ext_type, $userId, $brandId)
+    public static function addFile($imageFile, $file_type, $file_ext_type, $userId, $brandId, $invoiceId)
     {
         $add_file = new File();
         $add_file->file_url = $imageFile;
@@ -65,6 +65,7 @@ class Fileupload
         $add_file->file_ext_type = $file_ext_type;
         $add_file->brand_id = $brandId ?? 0;
         $add_file->user_id = $userId;
+        $add_file->invoice_id = $invoiceId;
 
         $Save = $add_file->save();
         return [
