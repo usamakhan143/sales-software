@@ -219,9 +219,9 @@
                 <h3>To:</h3>
                 <p>{{ $data->clientDetails->name }}<br>
                     Email: {{ $data->clientDetails->email }}<br>
-                    {{ $data->clientDetails->phone !== 'NA' ? 'Phone: ' . $data->clientDetails->phone . '<br>' : '' }}
-                    {{ $data->clientDetails->address !== 'NA' ? 'Address: ' . $data->clientDetails->address . '<br>' : '' }}
-                    {{ $data->clientDetails->city !== 'NA' && $data->clientDetails->state !== 'NA' && $data->clientDetails->zipCode !== 'NA' ? 'City, State, Zip Code: ' . $data->clientDetails->city . ', ' . $data->clientDetails->state . ', ' . $data->clientDetails->zipCode . '<br>' : '' }}
+                    {{ $data->clientDetails->phone !== 'NA' ? 'Phone: ' . $data->clientDetails->phone : '' }}</br>
+                    {{ $data->clientDetails->address !== 'NA' ? 'Address: ' . $data->clientDetails->address : '' }}</br>
+                    {{ $data->clientDetails->city !== 'NA' && $data->clientDetails->state !== 'NA' && $data->clientDetails->zipCode !== 'NA' ? 'City, State, Zip Code: ' . $data->clientDetails->city . ', ' . $data->clientDetails->state . ', ' . $data->clientDetails->zipCode : '' }}</br>
                     {{ $data->clientDetails->country !== 'NA' ? 'Country: ' . $data->clientDetails->country : '' }}</p>
             </div>
         </div>
