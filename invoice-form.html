@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice Form</title>
+    <link rel="stylesheet" href="./css/invoice-form-style.css">
+    <link rel="stylesheet" href="./css/date-picker.css">
+</head>
+
+
+<body>
+    <div class="overlay">
+        <div class="spinner">
+            <div class="inner">
+            </div>
+        </div>
+    </div>
+    <div class="form">
+        <div class="title">Welcome</div>
+        <div class="subtitle">Let's create your invoice!</div>
+
+        <form id="invoice">
+            <div class="input-container ic00">
+                <div class="select">
+                    <select name="brand" id="brandsList">
+                        <option value="">Select Brand *</option>
+                        <option value="2">Latte</option>
+                        <option value="3">Green Tea</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="input-container ic0">
+                <div class="checkbox">
+                    <input id="already-client" class="checkbox__input" type="checkbox" name="isClient">
+                    <label for="already-client" class="checkbox__label">
+                        <span class="checkbox__custom"></span>
+                        Already Client
+                    </label>
+                </div>
+            </div>
+
+            <div class="select" id="client-selector">
+                <select name="clientId" id="clientList">
+                    <option value="">Select Client *</option>
+                    <option value="2">Latte</option>
+                    <option value="3">Green Tea</option>
+                </select>
+            </div>
+
+            <div id="client-info">
+                <div class="input-container ic2">
+                    <input placeholder="" type="text" class="input" id="clientName" name="clientName">
+                    <div class="cut"></div>
+                    <label class="iLabel" for="clientName">Client Name *</label>
+                </div>
+                <div class="input-container ic2">
+                    <input placeholder="" type="text" class="input" id="email" name="clientEmail">
+                    <div class="cut cut-short"></div>
+                    <label class="iLabel" for="email">Email *</label>
+                </div>
+
+                <div class="input-container ic2">
+                    <input placeholder="" type="text" class="input" id="phone-number" name="phoneNumber">
+                    <div class="cut"></div>
+                    <label class="iLabel" for="phone-number">Phone #</label>
+                </div>
+
+                <div class="input-container ic2">
+                    <input placeholder="" type="text" class="input" id="address" name="address">
+                    <div class="cut"></div>
+                    <label class="iLabel" for="address">Address</label>
+                </div>
+
+                <div class="input-container ic2">
+                    <input placeholder="" type="text" class="input" id="city" name="city">
+                    <div class="cut cut-short"></div>
+                    <label class="iLabel" for="city">City</label>
+                </div>
+
+
+                <div class="input-container ic2">
+                    <input placeholder="" type="text" class="input" id="state" name="state">
+                    <div class="cut cut-short"></div>
+                    <label class="iLabel" for="state">State</label>
+                </div>
+
+                <div class="input-container ic2">
+                    <input placeholder="" type="text" class="input" id="zip-code" name="zipCode">
+                    <div class="cut"></div>
+                    <label class="iLabel" for="zip-code">Zip code</label>
+                </div>
+
+                <div class="input-container ic2">
+                    <input placeholder="" type="text" class="input" id="country" name="country">
+                    <div class="cut"></div>
+                    <label class="iLabel" for="country">Country</label>
+                </div>
+            </div>
+            <div class="input-container ic2">
+                <!-- <input placeholder="" type="date" class="input"> -->
+                <input type="text" class="input date-input" placeholder="" id="combine-date" readonly
+                    name="combineDate" />
+                <div class="datepicker" hidden>
+                    <!-- .datepicker-header -->
+                    <div class="datepicker-header">
+                        <button class="prev">Prev</button>
+
+                        <div>
+                            <select class="month-input">
+                                <option>January</option>
+                                <option>February</option>
+                                <option>March</option>
+                                <option>April</option>
+                                <option>May</option>
+                                <option>June</option>
+                                <option>July</option>
+                                <option>August</option>
+                                <option>September</option>
+                                <option>October</option>
+                                <option>November</option>
+                                <option>December</option>
+                            </select>
+                            <input type="number" class="year-input" />
+                        </div>
+
+                        <button class="next">Next</button>
+                    </div>
+                    <!-- /.datepicker-header -->
+
+                    <!-- .days -->
+                    <div class="days">
+                        <span>Sun</span>
+                        <span>Mon</span>
+                        <span>Tue</span>
+                        <span>Wed</span>
+                        <span>Thu</span>
+                        <span>Fri</span>
+                        <span>Sat</span>
+                    </div>
+                    <!-- /.days -->
+
+                    <!-- .dates -->
+                    <div class="dates"></div>
+                    <!-- /.dates -->
+
+                    <!-- .datepicker-footer -->
+                    <div class="datepicker-footer">
+                        <button class="cancel">Cancel</button>
+                        <button class="apply">Apply</button>
+                    </div>
+                    <!-- /.datepicker-footer -->
+                </div>
+                <div class="cut cut-short"></div>
+                <label class="iLabel" for="combine-date">Date</label>
+
+            </div>
+
+            <div class="input-container ic2">
+                <input placeholder="" type="text" class="input date-input" id="due-date" readonly name="dueDate">
+                <div class="datepicker" hidden>
+                    <!-- .datepicker-header -->
+                    <div class="datepicker-header">
+                        <button class="prev">Prev</button>
+
+                        <div>
+                            <select class="month-input">
+                                <option>January</option>
+                                <option>February</option>
+                                <option>March</option>
+                                <option>April</option>
+                                <option>May</option>
+                                <option>June</option>
+                                <option>July</option>
+                                <option>August</option>
+                                <option>September</option>
+                                <option>October</option>
+                                <option>November</option>
+                                <option>December</option>
+                            </select>
+                            <input type="number" class="year-input" />
+                        </div>
+
+                        <button class="next">Next</button>
+                    </div>
+                    <!-- /.datepicker-header -->
+
+                    <!-- .days -->
+                    <div class="days">
+                        <span>Sun</span>
+                        <span>Mon</span>
+                        <span>Tue</span>
+                        <span>Wed</span>
+                        <span>Thu</span>
+                        <span>Fri</span>
+                        <span>Sat</span>
+                    </div>
+                    <!-- /.days -->
+
+                    <!-- .dates -->
+                    <div class="dates"></div>
+                    <!-- /.dates -->
+
+                    <!-- .datepicker-footer -->
+                    <div class="datepicker-footer">
+                        <button class="cancel">Cancel</button>
+                        <button class="apply">Apply</button>
+                    </div>
+                    <!-- /.datepicker-footer -->
+                </div>
+                <div class="cut"></div>
+                <label class="iLabel" for="due-date">Due Date</label>
+            </div>
+
+            <div class="input-container ic2">
+                <input placeholder="" type="text" class="input" id="shipping-charges" name="shippingFee">
+                <div class="cut"></div>
+                <label class="iLabel" for="shipping-charges">Shipping Fee</label>
+            </div>
+
+            <div class="input-container ic0">
+                <div class="checkbox">
+                    <input id="is-recurring" class="checkbox__input" type="checkbox" name="isRecurring">
+                    <label for="is-recurring" class="checkbox__label">
+                        <span class="checkbox__custom"></span>
+                        Is Recurring?
+                    </label>
+                </div>
+            </div>
+            <div class="select" id="recurring-selector">
+                <select name="recurringType">
+                    <option value="">Select Type *</option>
+                    <option value="Monthly">Monthly</option>
+                    <option value="Weekly">Weekly</option>
+                    <option value="Daily">Daily</option>
+                    <option value="Hourly">Hourly</option>
+                </select>
+            </div>
+
+            <div class="input-container ic0">
+                <div class="checkbox">
+                    <input id="is-partial" class="checkbox__input" type="checkbox" name="isPartial">
+                    <label for="is-partial" class="checkbox__label">
+                        <span class="checkbox__custom"></span>
+                        Is Partial?
+                    </label>
+                </div>
+            </div>
+            <div class="input-container ic00" id="partial-amount">
+                <input placeholder="" type="text" class="input" id="this-amount" name="partialAmount">
+                <div class="cut"></div>
+                <label class="iLabel" for="this-amount">Amount *</label>
+            </div>
+
+            <div class="input-container ic2">
+                <textarea placeholder="" class="input" id="notes" name="notes"></textarea>
+                <div class="cut"></div>
+                <label class="iLabel" for="notes">Notes</label>
+            </div>
+            <div class="input-container ic0">
+                <div class="checkbox">
+                    <input id="is-payment-link" class="checkbox__input" type="checkbox" name="isPayLink">
+                    <label for="is-payment-link" class="checkbox__label">
+                        <span class="checkbox__custom"></span>
+                        Add Payment Link?
+                    </label>
+                </div>
+            </div>
+            <div class="input-container ic00" id="payment-link">
+                <input placeholder="" type="text" class="input" id="this-amount" name="payLink">
+                <div class="cut"></div>
+                <label class="iLabel" for="this-amount">https://... *</label>
+            </div>
+
+            <button class="submit-btn" type="submit">Click to create</button>
+    </div>
+    </form>
+
+    <script src="./js/invoice-form.js"></script>
+    <script src="./js/date-picker.js"></script>
+
+</body>
+
+</html>

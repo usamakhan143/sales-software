@@ -1,0 +1,335 @@
+.form {
+  background-color: #15172b;
+  border-radius: 20px;
+  box-sizing: border-box;
+  height: 500px auto;
+  padding: 20px;
+  width: 520px;
+}
+
+.title {
+  color: #eee;
+  font-family: "Poppins", sans-serif;
+  font-size: 36px;
+  font-weight: 600;
+  margin-top: 30px;
+}
+
+.subtitle {
+  color: #eee;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+.input-container {
+  height: 50px;
+  position: relative;
+  width: 100%;
+}
+
+.ic0 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* align-items: center; */
+  margin-top: 10px;
+}
+
+.ic00 {
+  margin-top: 5px;
+}
+
+.ic1 {
+  margin-top: 40px;
+}
+
+.ic2 {
+  margin-top: 30px;
+}
+
+.input {
+  background-color: #303245;
+  border-radius: 12px;
+  border: 0;
+  box-sizing: border-box;
+  color: #eee;
+  font-size: 18px;
+  height: 100%;
+  outline: 0;
+  padding: 4px 20px 0;
+  width: 100%;
+}
+
+.textarea {
+  height: 100px;
+  width: 100%;
+  padding-top: 9px;
+}
+
+.cut {
+  background-color: #15172b;
+  border-radius: 10px;
+  height: 20px;
+  left: 20px;
+  position: absolute;
+  top: -20px;
+  transform: translateY(0);
+  transition: transform 200ms;
+  width: 90px;
+}
+
+.cut-short {
+  width: 50px;
+}
+
+.iLabel {
+  color: #65657b;
+  font-family: "Poppins", sans-serif;
+  left: 20px;
+  line-height: 14px;
+  pointer-events: none;
+  position: absolute;
+  transform-origin: 0 50%;
+  transition: transform 200ms, color 200ms;
+  top: 20px;
+}
+
+.input:focus ~ .cut {
+  transform: translateY(8px);
+}
+
+.input:focus ~ .iLabel {
+  transform: translateY(-30px) translateX(10px) scale(0.75);
+}
+
+.input:not(:focus):not(:placeholder-shown) ~ .iLabel {
+  transform: translateY(-30px) translateX(10px) scale(0.75);
+  color: #808097;
+}
+
+.input:not(:focus):not(:placeholder-shown) ~ .cut {
+  transform: translateY(8px);
+}
+
+.input:focus ~ .iLabel {
+  color: #13dee2;
+}
+
+.submit {
+  background-color: #08d;
+  border-radius: 12px;
+  border: 0;
+  box-sizing: border-box;
+  color: #eee;
+  cursor: pointer;
+  font-size: 18px;
+  height: 50px;
+  margin-top: 38px;
+  text-align: center;
+  width: 100%;
+}
+
+.submit:active {
+  background-color: #06b;
+}
+
+/* Checkbox */
+.checkbox {
+  display: flex;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+}
+
+.checkbox__input {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.checkbox__label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0px;
+  position: relative;
+  font-size: 16px;
+  font-family: "Poppins", sans-serif;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.checkbox__custom {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #000;
+  margin-right: 5px;
+  margin-left: 0px;
+  background: linear-gradient(#212121, #212121) padding-box,
+    linear-gradient(145deg, #e81cff, #40c9ff) border-box;
+  border: 2px solid transparent;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.checkbox__input:checked + .checkbox__label .checkbox__custom {
+  background-image: linear-gradient(145deg, #e81cff, #40c9ff);
+  transform: rotate(45deg) scale(0.8);
+}
+
+.checkbox__label:hover .checkbox__custom {
+  transform: scale(1.2);
+}
+
+/* Select Feild */
+
+select {
+  /* Reset Select */
+  appearance: none;
+  outline: 10px red;
+  border: 0;
+  box-shadow: none;
+  /* Personalize */
+  flex: 1;
+  padding: 0 1em;
+  color: #fff;
+  background-color: #303245;
+  background-image: none;
+  cursor: pointer;
+}
+
+/* Remove IE arrow */
+select::-ms-expand {
+  display: none;
+}
+
+/* Custom Select wrapper */
+.select {
+  position: relative;
+  display: flex;
+  height: 3em;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Arrow */
+.select::after {
+  content: "\25BC";
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 1em;
+  background-color: #34495e;
+  transition: 0.25s all ease;
+  pointer-events: none;
+}
+
+/* Transition */
+.select:hover::after {
+  color: #f39c12;
+}
+
+/* Loader */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9); /* Dark overlay color */
+  z-index: 999; /* Ensure it's above other content */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  background-color: aqua;
+  display: grid;
+  place-items: center;
+  animation: zoomin 1.5s infinite alternate-reverse;
+}
+
+.inner {
+  background-color: #212121;
+  width: 80%;
+  height: 80%;
+  border-radius: 100%;
+}
+
+@keyframes zoomin {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 100px 20px rgb(16, 71, 71);
+  }
+  100% {
+    transform: scale(1.5);
+    box-shadow: 0 0 100px 20px #000;
+  }
+}
+
+/* New Submit Button */
+.submit-btn {
+  text-decoration: none;
+  position: relative;
+  border: none;
+  margin-top: 15px;
+  font-size: 14px;
+  font-family: inherit;
+  cursor: pointer;
+  color: #fff;
+  width: 100%;
+  height: 3em;
+  line-height: 2em;
+  text-align: center;
+  background: linear-gradient(90deg, #03a9f4, #f441a5, #ffeb3b, #03a9f4);
+  background-size: 300%;
+  border-radius: 30px;
+  z-index: 1;
+}
+
+.submit-btn:hover {
+  animation: ani 8s linear infinite;
+  border: none;
+}
+
+@keyframes ani {
+  0% {
+    background-position: 0%;
+  }
+
+  100% {
+    background-position: 400%;
+  }
+}
+
+.submit-btn:before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  z-index: -1;
+  background: linear-gradient(90deg, #03a9f4, #f441a5, #ffeb3b, #03a9f4);
+  background-size: 400%;
+  border-radius: 35px;
+  transition: 1s;
+}
+
+.submit-btn:hover::before {
+  filter: blur(20px);
+}
+
+.submit-btn:active {
+  background: linear-gradient(32deg, #03a9f4, #f441a5, #ffeb3b, #03a9f4);
+}
