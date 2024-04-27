@@ -24,6 +24,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 // Client Controller
+Route::get('all-clients', [ClientController::class, 'getClients']);
 Route::post('add-client', [ClientController::class, 'addClient']);
 
 // Brand Controller

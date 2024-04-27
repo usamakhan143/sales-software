@@ -4,11 +4,22 @@ namespace App\Http\Controllers\Apis;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\AddclientRequest;
+use App\Http\Resources\ClientResource;
 use App\Models\Apis\Client;
 use Illuminate\Support\Facades\Hash;
 
 class ClientController extends Controller
 {
+    public function getClients()
+    {
+        $getAllClients = Client::where('status', 1)->get();
+        return  response()->json([
+            'status' => 200,
+            'date' => ClientResource::collection($getAllClients)
+        ]);
+    }
+
+
     public function addClient(AddclientRequest $request)
     {
         // Create a new instance of the Client model
