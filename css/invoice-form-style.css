@@ -69,7 +69,7 @@
 }
 
 .cut {
-  background-color: #15172b;
+  background-color: transparent;
   border-radius: 10px;
   height: 20px;
   left: 20px;
@@ -97,6 +97,7 @@
 }
 
 .input:focus ~ .cut {
+  background-color: #15172b;
   transform: translateY(8px);
 }
 
@@ -213,6 +214,7 @@ select::-ms-expand {
   position: relative;
   display: flex;
   height: 3em;
+  width: 100%;
   border-radius: 12px;
   overflow: hidden;
 }
@@ -282,7 +284,7 @@ select::-ms-expand {
   text-decoration: none;
   position: relative;
   border: none;
-  margin-top: 15px;
+  margin-top: 30px;
   font-size: 14px;
   font-family: inherit;
   cursor: pointer;
@@ -332,4 +334,13 @@ select::-ms-expand {
 
 .submit-btn:active {
   background: linear-gradient(32deg, #03a9f4, #f441a5, #ffeb3b, #03a9f4);
+}
+
+.validation-error {
+  font-size: 12px;
+  color: rgb(255, 113, 113);
+}
+
+.validation-error-container {
+  z-index: 99999999 !important;
 }

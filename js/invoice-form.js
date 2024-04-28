@@ -27,7 +27,7 @@ alreadyClient.addEventListener('change', function () {
         // Get the select element by its ID
         var clientsSelector = document.getElementById('clientList');
         clientInfo.style.display = "none";
-        clientSelector.style.display = "flex";
+        clientSelector.style.display = "block";
 
         fetch(`${baseUrl}/all-clients`)
             .then(response => response.json())
@@ -47,7 +47,7 @@ alreadyClient.addEventListener('change', function () {
 // If Invoice is recurring
 isRecurring.addEventListener('change', function () {
     if (isRecurring.checked) {
-        recurringSelector.style.display = "flex";
+        recurringSelector.style.display = "block";
     } else {
         recurringSelector.style.display = "none";
     }
@@ -56,7 +56,7 @@ isRecurring.addEventListener('change', function () {
 // If Invoice is in partially paid behaviour
 isPartial.addEventListener('change', function () {
     if (isPartial.checked) {
-        partialSelector.style.display = "flex";
+        partialSelector.style.display = "block";
     } else {
         partialSelector.style.display = "none";
     }
@@ -65,7 +65,7 @@ isPartial.addEventListener('change', function () {
 // If payment link is available
 isPaymentLink.addEventListener('change', function () {
     if (isPaymentLink.checked) {
-        paymentLink.style.display = "flex";
+        paymentLink.style.display = "block";
     } else {
         paymentLink.style.display = "none";
     }

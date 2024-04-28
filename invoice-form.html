@@ -30,6 +30,7 @@
                         <option value="3">Green Tea</option>
                     </select>
                 </div>
+                <p class="validation-error brand-error">Brand is required</p>
             </div>
 
             <div class="input-container ic0">
@@ -42,42 +43,63 @@
                 </div>
             </div>
 
-            <div class="select" id="client-selector">
-                <select name="clientId" id="clientList">
-                    <option value="">Select Client *</option>
-                    <option value="2">Latte</option>
-                    <option value="3">Green Tea</option>
-                </select>
+            <div class="input-container ic00" id="client-selector">
+                <div class="select">
+                    <select name="clientId" id="clientList">
+                        <option value="">Select Client *</option>
+                        <option value="2">Latte</option>
+                        <option value="3">Green Tea</option>
+                    </select>
+                </div>
+                <div class="validation-error-container">
+                    <p class="validation-error client-error">Client is required</p>
+                </div>
             </div>
 
             <div id="client-info">
-                <div class="input-container ic2">
+                <div class="input-container ic00">
                     <input placeholder="" type="text" class="input" id="clientName" name="clientName">
                     <div class="cut"></div>
                     <label class="iLabel" for="clientName">Client Name *</label>
+
+                    <div class="validation-error-container">
+                        <p class="validation-error client-name-error">Client name is required</p>
+                    </div>
                 </div>
                 <div class="input-container ic2">
                     <input placeholder="" type="text" class="input" id="email" name="clientEmail">
                     <div class="cut cut-short"></div>
                     <label class="iLabel" for="email">Email *</label>
+                    <div class="validation-error-container">
+                        <p class="validation-error client-email-error">Client email is required</p>
+                    </div>
                 </div>
 
                 <div class="input-container ic2">
                     <input placeholder="" type="text" class="input" id="phone-number" name="phoneNumber">
                     <div class="cut"></div>
                     <label class="iLabel" for="phone-number">Phone #</label>
+                    <div class="validation-error-container">
+                        <p class="validation-error client-number-error">Client phone is required</p>
+                    </div>
                 </div>
 
                 <div class="input-container ic2">
                     <input placeholder="" type="text" class="input" id="address" name="address">
                     <div class="cut"></div>
                     <label class="iLabel" for="address">Address</label>
+                    <div class="validation-error-container">
+                        <p class="validation-error client-loc-error">Client address is required</p>
+                    </div>
                 </div>
 
                 <div class="input-container ic2">
                     <input placeholder="" type="text" class="input" id="city" name="city">
                     <div class="cut cut-short"></div>
                     <label class="iLabel" for="city">City</label>
+                    <div class="validation-error-container">
+                        <p class="validation-error client-city-error">Client city is required</p>
+                    </div>
                 </div>
 
 
@@ -85,18 +107,27 @@
                     <input placeholder="" type="text" class="input" id="state" name="state">
                     <div class="cut cut-short"></div>
                     <label class="iLabel" for="state">State</label>
+                    <div class="validation-error-container">
+                        <p class="validation-error client-state-error">Client state is required</p>
+                    </div>
                 </div>
 
                 <div class="input-container ic2">
                     <input placeholder="" type="text" class="input" id="zip-code" name="zipCode">
                     <div class="cut"></div>
                     <label class="iLabel" for="zip-code">Zip code</label>
+                    <div class="validation-error-container">
+                        <p class="validation-error client-zipcode-error">Client zipcode is required</p>
+                    </div>
                 </div>
 
                 <div class="input-container ic2">
                     <input placeholder="" type="text" class="input" id="country" name="country">
                     <div class="cut"></div>
                     <label class="iLabel" for="country">Country</label>
+                    <div class="validation-error-container">
+                        <p class="validation-error client-country-error">Client country is required</p>
+                    </div>
                 </div>
             </div>
             <div class="input-container ic2">
@@ -155,7 +186,9 @@
                 </div>
                 <div class="cut cut-short"></div>
                 <label class="iLabel" for="combine-date">Date</label>
-
+                <div class="validation-error-container">
+                    <p class="validation-error client-cdate-error">Invoice date is required</p>
+                </div>
             </div>
 
             <div class="input-container ic2">
@@ -212,12 +245,27 @@
                 </div>
                 <div class="cut"></div>
                 <label class="iLabel" for="due-date">Due Date</label>
+                <div class="validation-error-container">
+                    <p class="validation-error client-duedate-error">Due date is required</p>
+                </div>
             </div>
 
             <div class="input-container ic2">
                 <input placeholder="" type="text" class="input" id="shipping-charges" name="shippingFee">
                 <div class="cut"></div>
                 <label class="iLabel" for="shipping-charges">Shipping Fee</label>
+                <div class="validation-error-container">
+                    <p class="validation-error client-shipfee-error">Shipping fees is required</p>
+                </div>
+            </div>
+
+            <div class="input-container ic2">
+                <textarea placeholder="" class="input" id="notes" name="notes"></textarea>
+                <div class="cut"></div>
+                <label class="iLabel" for="notes">Notes</label>
+                <div class="validation-error-container">
+                    <p class="validation-error client-notes-error">Notes is required</p>
+                </div>
             </div>
 
             <div class="input-container ic0">
@@ -229,14 +277,20 @@
                     </label>
                 </div>
             </div>
-            <div class="select" id="recurring-selector">
-                <select name="recurringType">
-                    <option value="">Select Type *</option>
-                    <option value="Monthly">Monthly</option>
-                    <option value="Weekly">Weekly</option>
-                    <option value="Daily">Daily</option>
-                    <option value="Hourly">Hourly</option>
-                </select>
+
+            <div class="input-container ic00" id="recurring-selector">
+                <div class="select">
+                    <select name="recurringType">
+                        <option value="">Select Type *</option>
+                        <option value="Monthly">Monthly</option>
+                        <option value="Weekly">Weekly</option>
+                        <option value="Daily">Daily</option>
+                        <option value="Hourly">Hourly</option>
+                    </select>
+                </div>
+                <div class="validation-error-container">
+                    <p class="validation-error client-recurring-error">Recurring type is required</p>
+                </div>
             </div>
 
             <div class="input-container ic0">
@@ -252,13 +306,12 @@
                 <input placeholder="" type="text" class="input" id="this-amount" name="partialAmount">
                 <div class="cut"></div>
                 <label class="iLabel" for="this-amount">Amount *</label>
+
+                <div class="validation-error-container">
+                    <p class="validation-error client-partialAmount-error">Current payment is required</p>
+                </div>
             </div>
 
-            <div class="input-container ic2">
-                <textarea placeholder="" class="input" id="notes" name="notes"></textarea>
-                <div class="cut"></div>
-                <label class="iLabel" for="notes">Notes</label>
-            </div>
             <div class="input-container ic0">
                 <div class="checkbox">
                     <input id="is-payment-link" class="checkbox__input" type="checkbox" name="isPayLink">
@@ -272,6 +325,10 @@
                 <input placeholder="" type="text" class="input" id="this-amount" name="payLink">
                 <div class="cut"></div>
                 <label class="iLabel" for="this-amount">https://... *</label>
+
+                <div class="validation-error-container">
+                    <p class="validation-error client-paymentlink-error">Payment link is required</p>
+                </div>
             </div>
 
             <button class="submit-btn" type="submit">Click to create</button>
